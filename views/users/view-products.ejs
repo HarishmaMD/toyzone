@@ -1,0 +1,131 @@
+<%- include('../partials/userheader.ejs') %>
+     <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <p>Fresh and Organic</p>
+                        <h1>Shop</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <!-- end breadcrumb section -->
+
+    <!-- products -->
+    <div class="product-section mt-150 mb-150">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-filters">
+                        <ul>
+                          
+                            <li class="active" data-filter="*">All</li>
+                            <li data-filter=".MUSICAL">Musical</li>
+                            <li data-filter=".EDUCATIONAL">Educational</li>
+                            <li data-filter=".SOFT">Soft</li>
+                        </ul>
+                           
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+           
+            <div class="container">
+                <div class="row product-lists ">
+                    <% products.forEach(products=> { %>
+                    <div class="col-lg-4 col-md-6 text-center <%= products.category %> ">
+                        <div class="single-product-item">
+                            <div class="product-image ">
+                                <a href="/single-product?id=<%= products._id %>"><img src="/uploads/products/<%= products.img1 %>" width="200" height="300" alt=""></a>
+                            </div>
+                            <h3>
+                                <%= products.title %>
+                                <% if(products.stock == 0){ %>
+                                  
+                                    <p class="text-danger">Out of stock</p>
+                                    <% }else if(products.stock < 10 ){ %>
+                                        <p class="text-warning">Few stocks left</p>
+                                        
+                                        <% }else{%>
+                                        <p class="text-success">In stock</p>
+                                        <% } %> 
+                            </h3>
+
+                            <!-- <p class="product-price"> ₹<%= products.price %>
+                            </p> -->
+                            <!-- <a href="/cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a> -->
+                            
+						<% if(products.productOfferActive && products.categoryOfferActive){ %> 
+
+							<span class="mtext-106 cl2 d-flex justify-content-between w-100 px-4 Tbg-dark">
+								<% if(products.productOffer.offerPercentage > products.categoryOffer.discount ){ %> 
+									<% var discount =  products.productOffer.offerPercentage %>
+									<% }else{ %> 
+										<% var discount =  products.categoryOffer.discount %>
+								<% } %> 	
+								₹<%= (products.price) - (products.price/100)*discount  %> 
+
+								<span class="mtext-106 cl2 cl3">
+									₹<strike><%= products.price %></strike>
+									<b class="text-success"> <%= discount %>% off</b>
+								</span>
+							</span>
+						<% }else if(products.productOfferActive){ %>  
+							<span class="mtext-106 cl2 d-flex justify-content-between w-100 px-4 Tbg-dark">
+								<% let discount =  products.productOffer.offerPercentage %>
+								₹<%= (products.price) - (products.price/100)*discount  %> 
+							<span class="mtext-106 cl2 cl3">
+								₹<strike><%= products.price %></strike>
+								<b class="text-success"> <%= discount %>% off</b>
+							</span>
+							</span>
+						<% }else if(products.categoryOfferActive){ %> 
+							<span class="mtext-106 cl2 d-flex justify-content-between w-100 px-4 Tbg-dark">
+								<% let discount =  products.categoryOffer.discount %>
+								₹<%= (products.price) - (products.price/100)*discount  %> 
+							<span class="mtext-106 cl2 cl3">
+								₹<strike><%= products.price %></strike>
+								<b class="text-success"> <%= discount %>% off</b>
+							</span>
+							</span>
+							<% }else{ %>  
+								<span class="mtext-106 cl2 px-4">
+									₹<%= products.price %>
+								</span>
+							<% } %> 
+
+                            <!-- Out of stock -->
+                            <!-- <% if(products.stock == 0){ %>
+                                <br>
+                                <span class="text-danger">Out of stock</span>
+                                <% } %>  -->
+
+
+
+
+                        </div>
+                    </div>
+              
+
+                <% }); %>
+            </div>
+            </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <div class="pagination-wrap">
+                                <ul>
+                                    <li><a href="#">Prev</a></li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a class="active" href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">Next</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </div>

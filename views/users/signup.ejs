@@ -1,0 +1,361 @@
+<%- include('../partials/userheader.ejs') %>
+<!-- 
+<form action="/signup" method="post" id="form" onsubmit="return validateInputs()">
+<section class="vh-20 pt-5 gradient-custom">
+    <div class="container px-5 py-5 h-80">
+      <div class="row d-flex justify-content-center align-items-center h-50">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+  
+              <div class="mb-md-5 mt-md-4 pb-5">
+  
+                <h2 class="fw-bold mb-2 text-uppercase">signup</h2>
+                <p class="text-white-50 mb-5">Please enter the valid information</p>
+  
+
+                <div class="form-outline form-white mb-4">
+                    <input type="text" name="name"   id="name"  class="form-control form-control-lg" />
+                    <label class="form-label" for="typeEmailX">User Name</label>
+                    <div class="error"></div>
+                  </div>
+                <div class="form-outline form-white mb-4">
+                  <input type="email" name="email" id="email"  class="form-control form-control-lg" />
+                  <label class="form-label"  for="typeEmailX">Email</label>
+                  <div class="error"></div>
+                </div>
+                <div class="form-outline form-white mb-4">
+                    <input type="text"  name="phone" id="phone" class="form-control form-control-lg" />
+                    <label class="form-label"  for="typeEmailX">Phone Number</label>
+                    <div class="error"></div>
+                  </div>
+                  
+                 <div class="form-outline form-white mb-4">
+                  <input type="password" name="password" id="password"  class="form-control form-control-lg" />
+                  <label class="form-label"  for="typePasswordX">Password</label>
+                  <div class="error"></div>
+                 </div>
+                 <div class="form-outline form-white mb-4">
+                  <input type="password" name="cpassword" id="cpassword"   class="form-control form-control-lg" />
+                  <label class="form-label"  for="typePasswordX"> confirm Password</label>
+                  <div class="error"></div>
+                 </div>
+                <button class="btn btn-outline-light btn-lg px-5" type="submit">signup</button>
+              </div>
+  
+              <div>
+                <p class="mb-0 mt-3">Already have an account <a href="/login" class="text-white-50 fw-bold">Login</a>
+                </p>
+              </div>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
+
+<script>
+const form = document.getElementById('form');
+const name= document.getElementById('name');
+const email = document.getElementById('email');
+const phone = document.getElementById('phone');
+const password = document.getElementById('password');
+const cpassword = document.getElementById('cpassword')
+
+
+
+
+
+const validateInputs = () => {
+    const nameValue = name.value.trim();
+    const emailValue = email.value.trim();
+    const phoneValue = phone.value.trim();
+    const passwordValue = password.value.trim();
+    const cpasswordValue = cpassword.value.trim();
+
+    var returnval = true
+
+    if(nameValue === '') {
+        setError(name, 'Username is required');
+        returnval =false
+    } else if (nameValue.length<3){
+      setError(name,'Name must be atleast 3 characters')
+    }
+    else {
+        setSuccess(name);
+    }
+
+
+    if(emailValue === '') {
+        setError(email, 'Email is required');
+        returnval = false
+    } else if (!isValidEmail(emailValue)) {
+        setError(email, 'Provide a valid email address');
+        returnval = false
+    } else {
+        setSuccess(email);
+    }
+
+
+    if(phoneValue === '') {
+        setError(phone, 'Phone number is required');
+        returnval = false
+    }else if(phoneValue.length<10){
+      setError(phone,'Phone number must be 10 number ')
+    }
+     else {
+        setSuccess(phone);
+    }
+
+
+    if(passwordValue === '') {
+        setError(password, 'Password is required');
+        returnval = false
+    } else if (passwordValue.length < 4 ) {
+        setError(password, 'Password must be at least 8 character.')
+        returnval = false
+    } else {
+        setSuccess(password);
+    }
+
+    if(cpasswordValue === '') {
+        setError(cpassword, 'Please confirm your password');
+        returnval = false
+    } else if (cpasswordValue !== passwordValue) {
+        setError(cpassword, "Passwords doesn't match");
+        returnval = false
+    } else {
+        setSuccess(cpassword);
+    }
+
+    return returnval
+
+};
+  
+
+
+const setError = (element, message) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = message;
+    inputControl.classList.add('error');
+    inputControl.classList.remove('success')
+}
+
+const setSuccess = element => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = '';
+    inputControl.classList.add('success');
+    inputControl.classList.remove('error');
+};
+
+
+
+const isValidEmail = email => {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+</script> -->
+
+
+
+<div class="mt-5 pt-5">
+	<div class=" mt-5 mb-5">
+		<div class="col-md-6 mx-auto ">
+			<div class="card w-75 mx-5 me-box-shadow" style="border-radius: 30px ; ">
+				<div class="card-header text-center ">
+					<h1 class="">Signup</h1>
+				</div>
+				<div class="card-body">
+					<form class="form-horizontal" method="post" action="/signup">
+						<% if(locals.error){ %>
+							<h5 id="invalid" class="alert alert-danger">
+								<%= msg %>
+							</h5>
+					   <% } %>
+					
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Your Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>&nbsp;
+									<input type="text" class="form-control"  onkeyup="validateName()" name="name" id="name" placeholder="Enter your Name" /> <br>
+								</div>
+								<span id="name-error"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Your Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>&nbsp;
+									<input type="text" class="form-control" onkeyup="validateEmail()" name="email" id="email" placeholder="Enter your Email" /> 
+								</div>
+								<span id="email-error"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Phone Number</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>&nbsp;
+									<input type="text" class="form-control" name="phone"  onkeyup="validatePhone()" id="phone" placeholder="Enter your phone number" /> 
+								</div>
+								<span id="phone-error"></span>
+							</div>
+						</div>
+					
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label">Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>&nbsp;
+									<input type="password" class="form-control"  onkeyup="validatePassword()" name="password" id="password"
+										placeholder="Enter your Password" /> <br>
+								</div>
+								<span id="password-error"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label">Confirm Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>&nbsp;
+									<input type="password" class="form-control"  onkeyup="validatePassword()" name="cpassword" id="password"
+										placeholder="Enter your Password" /> <br>
+								</div>
+								<span id="password-error"></span>
+							</div>
+						</div>
+						<div class="form-group ">
+							<button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+						</div>
+						<div class="login-register d- d-flex">
+							<p>Already have an account?</p>&nbsp;&nbsp;<a href="/login">Login</a>
+						</div>
+					</form>
+				</div>
+	
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+var nameError = document.getElementById('name-error');
+	var emailError = document.getElementById('email-error');
+	var phoneError = document.getElementById('phone-error');
+	var passwordError = document.getElementById('password-error');
+	var submitError = document.getElementById('submit-error');
+
+
+	function validateName() {
+		var name = document.getElementById('name').value.trim();
+		console.log(name);
+
+		if (name.length == 0) {
+			nameError.innerHTML = 'Name is Required';
+			nameError.style.color = 'red'
+			return false;
+		}
+
+		if (!name.match(/^[A-Za-z ]*$/)) {
+			nameError.innerHTML = 'Write a FullName';
+			nameError.style.color = 'red'
+			return false;
+		}
+
+		if (name.length < 3) {
+			nameError.innerHTML = 'Enter minimum 3 charactors';
+			nameError.style.color = 'red'
+			return false;
+		}
+
+		nameError.innerHTML = 'Name is valid';
+		nameError.style.color = 'green'
+		return true;
+	}
+
+	function validateEmail() {
+		var email = document.getElementById('email').value.trim();
+		if (email.length == 0) {
+			emailError.innerHTML = 'Email is Required';
+			emailError.style.color = 'red'
+			return false;
+		}
+
+		if (!email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+			emailError.innerHTML = 'Email is Invalid';
+			emailError.style.color = 'red'
+			return false;
+		}
+		emailError.innerHTML = 'Email is valid';
+		emailError.style.color = 'green'
+		return true;
+	}
+
+	function validatePassword() {
+		var password = document.getElementById('password').value.trim();
+		var Required = 15;
+		var left = Required - password.length;
+
+		if (password.length == 0 || password.length < 10) {
+			passwordError.innerHTML = 'More Character Required';
+			passwordError.style.color = 'red'
+			return false;
+		}
+		passwordError.innerHTML = 'Valid';
+		passwordError.style.color = 'green'
+		return true;
+
+	}
+
+	function validatePhone() {
+		var phone = document.getElementById("phone").value.trim();
+		if (phone.length == 0) {
+			phoneError.innerHTML = 'Phone number is Required';
+			phoneError.style.color = 'red'
+			
+			return false;
+		}
+		if (phone.length <= 9) {
+			phoneError.innerHTML = "Enter Valid Phone Number"
+			phoneError.style.color = "red"
+			
+			return false
+
+		}
+		if (phone.length >= 11) {
+			phoneError.innerHTML = "Phone Number Must be 10 Digits"
+			phoneError.style.color = "red"
+			return false
+
+		}
+		if (!phone.match(/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/)) {
+			phoneError.innerHTML = "Phonenumber must be digits"
+			phoneError.style.color("red")
+
+
+			return false;
+		}
+		phoneError.innerHTML = ""
+		phoneError.innerHTML = "Phone Number is valid"
+		phoneError.style.color = 'green'
+		return true;
+
+
+	}
+	jQuery_1_7_1(document).on("submit","form", function(e){
+		if (validateName() && validateEmail() && validatePhone() && validatePassword()) {
+		
+		}else{
+			e.preventDefault();
+			alert('invalid data')
+		return false;
+		}
+	})
+</script>

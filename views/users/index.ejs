@@ -1,0 +1,219 @@
+
+<%- include('../partials/userheader.ejs') %>
+<!-- home page slider -->
+<div class="homepage-slider">
+		<% if(banners){ %> 
+			<% banners.forEach(banner => { %>
+				<div class="single-homepage-slider homepage-bg-1" style="background-image: url('/uploads/banner/<%= banner.image  %>');">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-10 offset-lg-1 text-center ">
+								<div class="hero-text">
+									<div class="hero-text-tablecell">
+										<p class="subtitle align-items-center"><%= banner.title1 %></p>
+										<h1><%= banner.title2 %></h1>
+										<div class="hero-btns">
+											<a href="<%= banner.url %>" class="boxed-btn">shop</a>
+											<!-- <a href="contact.html" class="bordered-btn">Contact Us</a> -->
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		<% })} %>
+		<!-- single home slider -->
+		<!-- single home slider -->
+		<!-- <div class="single-homepage-slider homepage-bg-2">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 offset-lg-1 text-center">
+						<div class="hero-text">
+							<div class="hero-text-tablecell">
+								<p class="subtitle">New Arrivals Everyday</p>
+								<h1>100% Good Quality Product</h1>
+								<div class="hero-btns">
+									<a href="shop.html" class="boxed-btn">Visit Shop</a>
+									<a href="contact.html" class="bordered-btn">Contact Us</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+		<!-- single home slider -->
+		<!-- <div class="single-homepage-slider homepage-bg-3">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 offset-lg-1 text-right">
+						<div class="hero-text">
+							<div class="hero-text-tablecell">
+								<p class="subtitle">Mega Sale Going On!</p>
+								<h1>Get December Discount</h1>
+								<div class="hero-btns">
+									<a href="shop.html" class="boxed-btn">Visit Shop</a>
+									<a href="contact.html" class="bordered-btn">Contact Us</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+	</div>
+	<!-- end home page slider -->
+
+	<!-- features list section -->
+	<div class="list-section pt-80 pb-80">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+					<div class="list-box d-flex align-items-center">
+						<div class="list-icon">
+							<i class="fas fa-shipping-fast"></i>
+						</div>
+						<div class="content">
+							<h3>Free Shipping</h3>
+							<p>When order over ₹75</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+					<div class="list-box d-flex align-items-center">
+						<div class="list-icon">
+							<i class="fas fa-phone-volume"></i>
+						</div>
+						<div class="content">
+							<h3>24/7 Support</h3>
+							<p>Get support all day</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="list-box d-flex justify-content-start align-items-center">
+						<div class="list-icon">
+							<i class="fas fa-sync"></i>
+						</div>
+						<div class="content">
+							<h3>Refund</h3>
+							<p>Get refund within 3 days!</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- end features list section -->
+
+	<!-- product section -->
+	<div class="product-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="section-title">	
+						<h3><span class="orange-text">Our</span> Products</h3>
+						<p>We can assure the good quality toys and best sellers in the market, 100% BPA free.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="container">
+					<div class="row product-lists ">
+						<% products.forEach(products=> { %>
+						<div class="col-lg-4 col-md-6 text-center strawberry">
+							<div class="single-product-item">
+								<div class="product-image">
+									<a href="/single-product?id=<%= products._id %>"><img src="/uploads/products/<%= products.img1 %>" width="200" height="300" alt=""></a>
+								</div>
+								<h3>
+									<%= products.title %>
+								</h3>
+								<% if(products.productOfferActive && products.categoryOfferActive){ %> 
+									<span class="stext-105 cl3 d-flex justify-content-between w-100 px-4 Tbg-dark">
+										<% if(products.productOffer.offerPercentage > products.categoryOffer.discount ){ %> 
+											<% var discount =  products.productOffer.offerPercentage %>
+											<% }else{ %> 
+												<% var discount =  products.categoryOffer.discount %>
+										<% } %> 
+
+									₹<%= (products.price) - (products.price/100)*discount  %> 
+									<span class="stext-105 cl3">
+										₹<strike><%= products.price %></strike>
+										<b class="text-success"> <%= discount %>% off</b>
+									</span>
+									</span>
+								<% }else if(products.productOfferActive){ %>  
+									<span class="stext-105 cl3 d-flex justify-content-between w-100 px-4 Tbg-dark">
+										<% let discount =  products.productOffer.offerPercentage %>
+										₹<%= (products.price) - (products.price/100)*discount  %> 
+										<span class="stext-105 cl3">
+											₹<strike><%= products.price %></strike> <b class="text-success"> <%= discount %>% off</b>
+										</span>
+									</span>
+								<% }else if(products.categoryOfferActive){ %> 
+									<span class="stext-105 cl3 d-flex justify-content-between w-100 px-4 Tbg-dark">
+										<% var discount =  products.categoryOffer.discount %>
+										₹<%= (products.price) - (products.price/100)*discount  %> 
+										<span class="stext-105 cl3">
+											₹<strike><%= products.price %></strike> <b class="text-success"> <%= discount %>% off</b>
+										</span>
+									</span>
+								<% }else{ %> 
+									<span class="stext-105 cl3 px-4">
+										₹<%= products.price %>
+									</span>
+								<% } %> 
+								<!-- <a href="/cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a> -->
+							</div>
+						</div>
+				  
+	
+					<% }); %>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end product section -->
+
+	
+
+	<!-- logo carousel
+	<div class="logo-carousel-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="logo-carousel-inner">
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/1.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/2.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/3.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/4.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/5.png" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<!-- end logo carousel -->
+
+	
+
+
+
+
+	

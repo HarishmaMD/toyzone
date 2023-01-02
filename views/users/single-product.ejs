@@ -1,0 +1,435 @@
+
+<%- include('../partials/userheader.ejs') %>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+
+<link rel='stylesheet' href='https://sachinchoolur.github.io/lightslider/dist/css/lightslider.css'>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+
+
+   body{
+
+    background-color: #eee;
+    font-family: "Poppins", sans-serif
+
+   }
+
+.card {
+    background-color: #fff;
+    padding: 14px;
+    border: none
+}
+
+.demo {
+    width: 100%
+}
+
+ul {
+    list-style: none outside none;
+    padding-left: 0;
+    margin-bottom: 0
+}
+
+li {
+    display: block;
+    float: left;
+    margin-right: 6px;
+    cursor: pointer
+}
+
+img {
+    display: block;
+    height: auto;
+    width: 100%
+}
+
+.stars i {
+    color: #f6d151
+}
+
+.stars span {
+    font-size: 13px
+}
+
+hr {
+    color: #d4d4d4
+}
+
+.badge {
+    padding: 5px !important;
+    padding-bottom: 6px !important
+}
+
+.badge i {
+    font-size: 10px
+}
+
+.profile-image {
+    width: 35px
+}
+
+.comment-ratings i {
+    font-size: 13px
+}
+
+.username {
+    font-size: 12px
+}
+
+.comment-profile {
+    line-height: 17px
+}
+
+.date span {
+    font-size: 12px
+}
+
+.p-ratings i {
+    color: #f6d151;
+    font-size: 12px
+}
+
+.btn-long {
+    padding-left: 35px;
+    padding-right: 35px
+}
+
+.buttons {
+    margin-top: 15px
+}
+
+.buttons .btn {
+    height: 46px
+}
+
+.buttons .cart {
+    border-color: #ff7676;
+    color: #ff7676
+}
+
+.buttons .cart:hover {
+    background-color: #e86464 !important;
+    color: #fff
+}
+
+.buttons .buy {
+    color: #fff;
+    background-color: #ff7676;
+    border-color: #ff7676
+}
+
+.buttons .buy:focus,
+.buy:active {
+    color: #fff;
+    background-color: #ff7676;
+    border-color: #ff7676;
+    box-shadow: none
+}
+
+.buttons .buy:hover {
+    color: #fff;
+    background-color: #e86464;
+    border-color: #e86464
+}
+
+.buttons .wishlist {
+    background-color: #fff;
+    border-color: #ff7676
+}
+
+.buttons .wishlist:hover {
+    background-color: #e86464;
+    border-color: #e86464;
+    color: #fff
+}
+
+.buttons .wishlist:hover i {
+    color: #fff
+}
+
+.buttons .wishlist i {
+    color: #ff7676
+}
+
+.comment-ratings i {
+    color: #f6d151
+}
+
+.followers {
+    font-size: 9px;
+    color: #d6d4d4
+}
+
+.store-image {
+    width: 42px
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px
+}
+
+.bullet-text {
+    font-size: 12px
+}
+
+.my-color {
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+label.radio {
+    cursor: pointer
+}
+
+label.radio input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    pointer-events: none
+}
+
+label.radio span {
+    border: 2px solid #8f37aa;
+    display: inline-block;
+    color: #8f37aa;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-transform: uppercase;
+    transition: 0.5s all
+}
+
+label.radio .red {
+    background-color: red;
+    border-color: red
+}
+
+label.radio .blue {
+    background-color: blue;
+    border-color: blue
+}
+
+label.radio .green {
+    background-color: green;
+    border-color: green
+}
+
+label.radio .orange {
+    background-color: orange;
+    border-color: orange
+}
+
+label.radio input:checked+span {
+    color: #fff;
+    position: relative
+}
+
+label.radio input:checked+span::before {
+    opacity: 1;
+    content: '\2713';
+    position: absolute;
+    font-size: 13px;
+    font-weight: bold;
+    left: 4px
+}
+
+.card-body {
+    padding: 0.3rem 0.3rem 0.2rem
+}
+#image{
+  
+    border-radius: 5px;
+
+    
+}
+</style>
+
+
+<div class="container p-5">
+	
+</div>
+<div class="main-panel">
+    <div class="content-wrapper">
+      <div class="row">
+
+<% if(products){ %>
+<div class="container-fluid mt-2 mb-3 p-5">
+    <div class="row no-gutters">
+        <div class="col-md-5 pr-2">
+            <div class="card">
+                <div class="demo">
+                    <ul id="lightSlider">
+						<li data-thumb="/uploads/products/<%= products.img1 %>"> <img class="zoom" src="/uploads/products/<%= products.img1 %>" />
+                        </li>
+                        <li data-thumb="/uploads/products/<%= products.img2 %>"> <img src="/uploads/products/<%= products.img2 %>" class="zoom" />
+                        </li>
+                        <li data-thumb="/uploads/products/<%= products.img3 %>"> <img src="/uploads/products/<%= products.img3 %>" class="zoom" />
+                        </li>
+                        <li data-thumb="/uploads/products/<%= products.img4 %>"> <img src="/uploads/products/<%= products.img4 %>" class="zoom" />
+                        </li>
+                     
+                    </ul>
+                </div>
+            </div>
+           
+        </div>
+        <div class="col-md-7">
+            <div class="card">
+                <div class="d-flex flex-row align-items-center">
+                    
+                        
+                </div>
+                <div class="about"><h2> <span class="font-weight-bold"><%= products.title %> </span></h2>
+                    <!-- <h4 class="font-weight-bold">₹<%= products.price %></h4> -->
+                    <% if(products.productOfferActive && products.categoryOfferActive){ %> 
+
+                        <span class="mtext-106 cl2 d-flex justify-content-between w-100 px-4 Tbg-dark">
+                            <% if(products.productOffer.offerPercentage > products.categoryOffer.discount ){ %> 
+                                <% var discount =  products.productOffer.offerPercentage %>
+                                <% }else{ %> 
+                                    <% var discount =  products.categoryOffer.discount %>
+                            <% } %> 	
+                            ₹<%= (products.price) - (products.price/100)*discount  %> 
+
+                            <span class="mtext-106 cl2 cl3">
+                                ₹<strike><%= products.price %></strike>
+                                <b class="text-success"> <%= discount %>% off</b>
+                            </span>
+                        </span>
+                    <% }else if(products.productOfferActive){ %>  
+                        <span class="mtext-106 cl2 d-flex justify-content-between w-100 px-4 Tbg-dark">
+                            <% let discount =  products.productOffer.offerPercentage %>
+                            ₹<%= (products.price) - (products.price/100)*discount  %> 
+                        <span class="mtext-106 cl2 cl3">
+                            ₹<strike><%= products.price %></strike>
+                            <b class="text-success"> <%= discount %>% off</b>
+                        </span>
+                        </span>
+                    <% }else if(products.categoryOfferActive){ %> 
+                        <span class="mtext-106 cl2 d-flex justify-content-between w-100 px-4 Tbg-dark">
+                            <% let discount =  products.categoryOffer.discount %>
+                            ₹<%= (products.price) - (products.price/100)*discount  %> 
+                        <span class="mtext-106 cl2 cl3">
+                            ₹<strike><%= products.price %></strike>
+                            <b class="text-success"> <%= discount %>% off</b>
+                        </span>
+                        </span>
+                        <% }else{ %>  
+                            <span class="mtext-106 cl2 px-4">
+                                ₹<%= products.price %>
+                            </span>
+                        <% } %> 
+
+                </div>
+				
+                <% if ( loggedIn ) { %>
+                <div class="buttons"> 
+                    <a href="/cart"><button class="btn btn-outline-warning btn-long cart d-none" id="goToCart">Go to Cart</button></a>
+					<% if(addedToCart){ %>
+					<a href="/cart"><button class="btn btn-outline-warning btn-long cart">Go to Cart</button></a>
+
+					<% }else if(products.stock == 0){ %>
+                        <h3 class="text-danger">Out of stock</h1>
+                        <% }else{ %> 
+						<div class="wrap-num-product flex-w m-r-20 m-tb-10">
+							<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+								<i class="fs-16 zmdi zmdi-minus"></i>
+							</div>
+							
+							<input class="mtext-104 cl3 txt-center num-product d-none" id="quantity" type="number" name="num_product"
+							value="1" >
+							
+							<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+								<i class="fs-16 zmdi zmdi-plus"></i>
+							</div>
+						</div>
+						                    <button type="button" id="addToCartBtn" onclick="addToCart('<%= products._id %>')" class="btn btn-warning btn-long buy">Add to cart</button> 
+						<% } %> 
+					<br>
+                    <% }else{ %>
+                        <a href="/login">
+                            <button type="button"  class="btn btn-warning btn-long buy my-3">Add to cart</button> 
+                        </a>
+                    <% } %>
+
+			
+
+
+
+                <hr>
+                <div class="product-description">
+					<div class="d-flex flex-row align-items-center"> <i class="fa fa-calendar-check-o"></i>
+						
+                        <span class="ml-1">Delivery within 15-45 days</span> </div>
+                </div>
+					<div class="mt-2"> <span class="font-weight-bold">Category</span>
+                        <p><%= products.category %></p>
+                       
+                    </div>
+                  
+                    <div class="mt-2"> <span class="font-weight-bold">Description</span>
+                        <p><%= products.description %></p>
+                       
+                    </div>
+                   
+                 
+            </div>
+           
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<% } %>
+<br>
+<br>
+<script>
+	function addToCart(productId){
+		let quantity = document.getElementById('quantity').value;
+		$.ajax( 
+				{
+					url:'/addToCart',
+					data:{
+						productId: productId,
+						quantity: quantity
+					},
+					method: 'post',
+					success:(response)=>{
+							document.getElementById('addToCartBtn').classList.add('d-none'),
+							document.getElementById('goToCart').classList.remove('d-none'),
+                            Swal.fire(
+			                                    'Good job!',
+		                                    	'Product added to the cart!',
+			                                    'success'
+			                        )
+					}
+				})
+	}
+</script>
+<!-- <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script> -->
+<script src='https://sachinchoolur.github.io/lightslider/dist/js/lightslider.js'></script>
+<script>
+    $('#lightSlider').lightSlider({ gallery: true, item: 1, loop: true, slideMargin: 0, thumbItem: 9 });
+</script>
+<script src="assets/js/zoomsl.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.zoom').imagezoomsl({
+            zoomrange:[3,3]
+            });
+        })
+    </script>
+
+
