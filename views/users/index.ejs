@@ -130,8 +130,20 @@
 								<div class="product-image">
 									<a href="/single-product?id=<%= products._id %>"><img src="/uploads/products/<%= products.img1 %>" width="200" height="300" alt=""></a>
 								</div>
+								<!-- <h3>
+									<%= products.title %>
+								</h3> -->
 								<h3>
 									<%= products.title %>
+									<% if(products.stock == 0){ %>
+									  
+										<p class="text-danger">Out of stock</p>
+										<% }else if(products.stock < 10 ){ %>
+											<p class="text-warning">Few stocks left</p>
+											
+											<% }else{%>
+											<p class="text-success">In stock</p>
+											<% } %> 
 								</h3>
 								<% if(products.productOfferActive && products.categoryOfferActive){ %> 
 									<span class="stext-105 cl3 d-flex justify-content-between w-100 px-4 Tbg-dark">
